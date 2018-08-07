@@ -14,17 +14,17 @@ import { DateService } from '../services/datepicker.service';
         </div>
         <div class="date-header">
             <div class="row">
-                <div (tap)="setView(views.Month, getTempMonth(), months.length, yearScroll)" class="col datepicker-month">
+                <div (click)="setView(views.Month, getTempMonth(), months.length, yearScroll)" class="col datepicker-month">
                     {{monthShort(getTempMonth())}}
                 </div>
             </div>
             <div class="row">
-                <div (tap)="setView(views.Day, getTempDate(),getDayList().length, dayScroll)" class="col datepicker-day-of-month ">
+                <div (click)="setView(views.Day, getTempDate(),getDayList().length, dayScroll)" class="col datepicker-day-of-month ">
                     {{getTempDate()}}
                 </div>
             </div>
             <div class="row">
-                <div  (tap)="setView(views.Year, getTempYear() - 1901, years.length, yearScroll)" class="col datepicker-year ">
+                <div  (click)="setView(views.Year, getTempYear() - 1901, years.length, yearScroll)" class="col datepicker-year ">
                     {{ getTempYear()}}
                 </div>
             </div>
@@ -34,11 +34,11 @@ import { DateService } from '../services/datepicker.service';
     *ngIf="view === views.Calendar"
         [ngClass]="config.bodyClasses">
         <div class="row col datepicker-controls">
-            <button (tap)="prevMonth()" ion-button>
+            <button (click)="prevMonth()" ion-button>
                     <ion-icon name="arrow-back"></ion-icon>
                 </button>            
                 {{getTempMonth()}} {{getTempYear()}}
-            <button (tap)="nextMonth()"ion-button>
+            <button (click)="nextMonth()"ion-button>
                     <ion-icon name="arrow-forward"></ion-icon>
             </button>
         </div>
@@ -60,7 +60,7 @@ import { DateService } from '../services/datepicker.service';
                   'datepicker-temp': isTempDate(getDate(i, j)),
                   'datepicker-mark' : isMark(getDate(i, j))
                   }"
-                    (tap)="selectDate(getDate(i, j))">
+                    (click)="selectDate(getDate(i, j))">
 					{{getDateAsDay(i, j)}}
 				</span>
             </div>
@@ -68,30 +68,30 @@ import { DateService } from '../services/datepicker.service';
     </div>
     <div [hidden]="view !== views.Year" #yearScroll class="datepicker-rows">
         <ng-container  *ngFor="let year of years">    
-            <div  *ngIf="testYear(year) && view === views.Year" (tap)="setSelectedYear(year)" [class.active]="getTempYear() === year" [class.selected]="getSelectedYear() === year" class="row">
+            <div  *ngIf="testYear(year) && view === views.Year" (click)="setSelectedYear(year)" [class.active]="getTempYear() === year" [class.selected]="getSelectedYear() === year" class="row">
                 {{year}}
             </div>
         </ng-container>
     </div>
         <div [hidden]="view !== views.Month" #monthScroll class="datepicker-rows">
         <ng-container *ngFor="let month of months;let i = index">
-            <div  *ngIf="testMonth(i)  && view === views.Month" (tap)="setSelectedMonth(i)" [class.active]="getTempMonth() === month" [class.selected]="getSelectedMonth() === month"   class="row">
+            <div  *ngIf="testMonth(i)  && view === views.Month" (click)="setSelectedMonth(i)" [class.active]="getTempMonth() === month" [class.selected]="getSelectedMonth() === month"   class="row">
                 {{month}}
             </div>
         </ng-container>
     </div>
     <div [hidden]="view !== views.Day" #dayScroll class="datepicker-rows">
        <ng-container *ngFor="let day of getDayList()">
-            <div class="row" *ngIf="testDay(day)  && view === views.Day" [class.active]="getTempDate() === day" [class.selected]="getSelectedDate() === day" (tap)="setSelectedDay(day)" >
+            <div class="row" *ngIf="testDay(day)  && view === views.Day" [class.active]="getTempDate() === day" [class.selected]="getSelectedDate() === day" (click)="setSelectedDay(day)" >
                 {{day}}
             </div>
         </ng-container>
     </div>
     <div class="datepicker-footer">
-        <button (tap)="onCancel()"
+        <button (click)="onCancel()"
             ion-button>
             {{config.cancelText || 'Cancel'}}</button>
-        <button (tap)="onDone()"
+        <button (click)="onDone()"
             ion-button>
             {{config.okText || 'OK'}}</button>
     </div>
